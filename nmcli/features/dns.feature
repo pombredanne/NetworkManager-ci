@@ -492,7 +492,7 @@ Feature: nmcli - dns
 
 
     @rhbz1676635
-    @ver+=1.18
+    @ver+=1.17.3
     @con_dns_remove
     @dns_multiple_options
     Scenario: nmcli - dns - add more options to ipv4.dns-options
