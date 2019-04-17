@@ -492,7 +492,7 @@ Feature: nmcli - dns
 
 
     @rhbz1676635
-    @ver+=1.14
+    @ver+=1.18
     @con_dns_remove
     @dns_multiple_options
     Scenario: nmcli - dns - add more options to ipv4.dns-options
@@ -500,3 +500,9 @@ Feature: nmcli - dns
     * Modify connection "con_dns" changing options "+ipv4.dns-options timeout:2"
     Then "timeout\\:2" is visible with command "nmcli -g ipv4.dns-options con show id con_dns"
      And "ndots\\:2" is visible with command "nmcli -g ipv4.dns-options con show id con_dns"
+    * Modify connection "con_dns" changing options "-ipv4.dns-options ndots:2"
+    Then "timeout\\:2" is visible with command "nmcli -g ipv4.dns-options con show id con_dns"
+     And "ndots\\:2" is not visible with command "nmcli -g ipv4.dns-options con show id con_dns"
+    * Modify connection "con_dns" changing options "-ipv4.dns-options timeout:2"
+    Then "timeout\\:2" is not visible with command "nmcli -g ipv4.dns-options con show id con_dns"
+     And "ndots\\:2" is not visible with command "nmcli -g ipv4.dns-options con show id con_dns"
